@@ -2,15 +2,13 @@
 const Trip = require('../models/Trip');
 
 const getAllTrips = (req, res, next) => {
-  Trip.getAll((err, results, fields) => {
-    req.trips = results;
-    return results.map(result => {
-      let allTrips = result.name;
-      console.log('yo', allTrips);
-      res.render('home', {allTrips});
-    })
-    next();
-  })
-}
+  Trip.getAll(async (err, results, fields) => {
+    let allTrips = []
+    await results.map((result) => {
+      allTrips.push(result.name);
+    });
+    res.render("home", { allTrips });
+  });
+};
 
 module.exports = { getAllTrips };

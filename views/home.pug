@@ -5,4 +5,7 @@ html(lang="en")
 
   body
     h1 The best Tours in Lisbon
-      p #{allTrips}
+      div
+        ul
+          each trip in allTrips
+            li= trip
